@@ -7,7 +7,6 @@ Personal solutions to LeetCode problems, written in C (and occasionally other la
 Each problem has its own folder named `<number>_<problemName>/` containing:
 
 - `<number>_<problemName>.c` — the solution (additional languages appear as `<number>_<problemName>.py` etc.)
-- `PROBLEM.md` — the original problem statement copied from LeetCode
 
 ## Commit conventions
 
