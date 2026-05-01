@@ -1,25 +1,26 @@
 #include <stdio.h>
 
 int lengthOfLongestSubstring(char* s) {
-    int lastSeen[128] = {0};
-    int maxLen = 0;
-    int left = 0;
+    int tail = 1;   // tail is 1 more than string index
+    int lastSeenPos[128] = {0}; // value is string index + 1. 0 = null
+    int longest = 0;
 
-    for (int right = 0; s[right] != '\0'; right++) {
-        int c = s[right];
-        if (lastSeen[c] > left)
-            left = lastSeen[c];
-        lastSeen[c] = right + 1;
-        if (right - left + 1 > maxLen)
-            maxLen = right - left + 1;
+    for (int head = 1; s[head - 1] != '\0'; head++ ) {   // head is 1 more than string index
+        char letter = s[head - 1];
+        // if we've seen letter at or after tail, update window
+        if (lastSeenPos[letter] >= tail)   {
+            tail = lastSeenPos[letter] + 1; // move tail just beyond this letter's previously seen position
+        }
+        // evaluate window length every loop
+        if (longest < head - tail + 1) longest = head - tail + 1;
+        lastSeenPos[letter] = head;
     }
-
-    return maxLen;
+    return longest;
 }
 
 int main() {
-    char* tests[] = {"abcabcbb", "bbbbb", "pwwkew"};
-    for (int i = 0; i < 3; i++)
+    char* tests[] = {"dvdf", "aab", "abcabcbb", "bbbbb", "pwwkew", " "};
+    for (int i = 0; i < 6; i++)
         printf("Input: \"%s\" -> Output: %d\n", tests[i], lengthOfLongestSubstring(tests[i]));
     return 0;
 }
