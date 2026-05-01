@@ -1,5 +1,10 @@
-*
+# C build artifacts
+*.o
+*.a
+*.so
+*.out
+a.out
+out
 
-!.gitignore
-!.vscode/
-!*.c
+# VSCode
+.vscode/
